@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA WM 2026 — USA · Kanada · Mexiko</title>
+<meta name="description" content="Alles zur Fußball-Weltmeisterschaft 2026: Gastgeber, neues Format mit 48 Teams, Gruppenphase, Sechzehntelfinale, Länder & Besonderheiten.">
+<style>
+  :root{
+    --usa-blue:#3C3B6E; --usa-red:#B22234; --usa-white:#fff;
+    --can-red:#D52B1E; --mex-green:#006847; --mex-red:#CE1126;
+    --gold:#FFD700; --dark:#0d1117; --muted:#5b6473;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f7fa;color:#1a1a1a;line-height:1.6}
+  header.hero{
+    position:relative;min-height:90vh;
+    background:
+      linear-gradient(135deg, rgba(60,59,110,.85), rgba(213,43,30,.75) 50%, rgba(0,104,71,.85)),
+      url('https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600') center/cover;
+    color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"⚽";position:absolute;font-size:18rem;opacity:.08;top:-3rem;right:-3rem;transform:rotate(-15deg);
+  }
+  .badge{background:var(--gold);color:#222;padding:.5rem 1.5rem;border-radius:999px;font-weight:bold;letter-spacing:.2em;margin-bottom:1.5rem;font-size:.9rem}
+  h1{font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;text-shadow:0 4px 20px rgba(0,0,0,.4);letter-spacing:-.02em}
+  .hero p.sub{font-size:1.3rem;margin-top:1rem;opacity:.95;max-width:700px}
+  .flags{display:flex;gap:1.5rem;margin-top:2.5rem;font-size:3rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3))}
+  .flags span{transition:transform .3s}
+  .flags span:hover{transform:translateY(-8px) scale(1.1)}
+  .countdown{margin-top:2rem;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);padding:1rem 2rem;border-radius:12px;border:1px solid rgba(255,255,255,.2)}
+
+  nav{position:sticky;top:0;background:var(--dark);z-index:100;padding:1rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+  nav a{color:#fff;text-decoration:none;font-weight:500;transition:color .2s;position:relative}
+  nav a:hover{color:var(--gold)}
+  nav a::after{content:"";position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--gold);transition:width .3s}
+  nav a:hover::after{width:100%}
+
+  section{max-width:1200px;margin:0 auto;padding:5rem 2rem}
+  h2{font-size:2.5rem;margin-bottom:.5rem;font-weight:800}
+  .section-sub{color:var(--muted);margin-bottom:3rem;font-size:1.1rem}
+  .divider{width:80px;height:5px;background:linear-gradient(90deg,var(--usa-blue),var(--can-red),var(--mex-green));border-radius:3px;margin:1rem 0 2rem}
+
+  .host-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+  .host-card{border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);background:#fff;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+  .host-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+  .host-card .top{padding:2rem;color:#fff;text-align:center}
+  .host-card.usa .top{background:linear-gradient(135deg,var(--usa-blue),var(--usa-red))}
+  .host-card.can .top{background:linear-gradient(135deg,var(--can-red),#8b0000)}
+  .host-card.mex .top{background:linear-gradient(135deg,var(--mex-green),var(--mex-red))}
+  .host-card .flag{font-size:4rem;margin-bottom:.5rem}
+  .host-card h3{font-size:1.8rem;margin-bottom:.3rem}
+  .host-card .body{padding:1.5rem}
+  .host-card ul{list-style:none;padding:0}
+  .host-card li{padding:.5rem 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between}
+  .host-card li:last-child{border:none}
+  .host-card li strong{color:#222}
+
+  .format{background:linear-gradient(135deg,#fff 0%,#f0f4ff 100%);border-radius:24px;padding:3rem;box-shadow:0 5px 30px rgba(0,0,0,.05)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin:2rem 0}
+  .stat{text-align:center;padding:1.5rem;background:#fff;border-radius:16px;border-top:4px solid var(--gold);box-shadow:0 4px 15px rgba(0,0,0,.06)}
+  .stat .num{font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--usa-blue),var(--mex-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .stat .lbl{color:var(--muted);font-size:.9rem;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+
+  .phase{margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+  .phase-card{background:#fff;padding:1.8rem;border-radius:16px;border-left:5px solid var(--usa-red);transition:all .3s}
+  .phase-card:hover{border-left-width:10px;transform:translateX(5px)}
+  .phase-card h4{color:var(--usa-blue);font-size:1.3rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+  .phase-card .icon{font-size:1.5rem}
+
+  .countries{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
+  .country{background:#fff;padding:1.2rem;border-radius:12px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;cursor:pointer}
+  .country:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+  .country .flag{font-size:2.8rem;display:block;margin-bottom:.4rem}
+  .country .name{font-weight:700;font-size:1.05rem}
+  .country .note{font-size:.85rem;color:var(--muted);margin-top:.3rem}
+
+  .fun-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
+  .fun{padding:2rem;border-radius:20px;color:#fff;text-align:center;position:relative;overflow:hidden}
+  .fun .emoji{font-size:3.5rem;display:block;margin-bottom:.5rem}
+  .fun h4{font-size:1.3rem;margin-bottom:.5rem}
+  .fun.f1{background:linear-gradient(135deg,#f59e0b,#d97706)}
+  .fun.f2{background:linear-gradient(135deg,#10b981,#047857)}
+  .fun.f3{background:linear-gradient(135deg,#3b82f6,#1e40af)}
+  .fun.f4{background:linear-gradient(135deg,#ef4444,#991b1b)}
+
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+  .links a{display:block;padding:1.5rem;background:#fff;border-radius:14px;text-decoration:none;color:#1a1a1a;border:2px solid transparent;transition:all .3s;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+  .links a:hover{border-color:var(--usa-red);transform:translateY(-3px)}
+  .links a strong{display:block;color:var(--usa-blue);margin-bottom:.3rem;font-size:1.1rem}
+  .links a span{color:var(--muted);font-size:.9rem}
+
+  footer{background:var(--dark);color:#fff;text-align:center;padding:3rem 2rem;margin-top:5rem}
+  footer .flags{justify-content:center;font-size:2rem;margin:1rem 0}
+  footer p{opacity:.7;font-size:.9rem}
+
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+  .bounce{display:inline-block;animation:bounce 2s infinite}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="badge">★ FIFA WORLD CUP ★</span>
+  <h1>WM 2026 <span class="bounce">⚽</span></h1>
+  <p class="sub">Die größte Weltmeisterschaft aller Zeiten — zum ersten Mal mit <strong>48 Teams</strong> in drei Ländern</p>
+  <div class="flags">
+    <span title="USA">🇺🇸</span><span title="Kanada">🇨🇦</span><span title="Mexiko">🇲🇽</span>
+  </div>
+  <div class="countdown">📅 11. Juni – 19. Juli 2026 · 104 Spiele · 16 Stadien</div>
+</header>
+
+<nav>
+  <a href="#gastgeber">Gastgeber</a>
+  <a href="#format">Neues Format</a>
+  <a href="#phasen">Spielphasen</a>
+  <a href="#laender">Länder</a>
+  <a href="#besonderheiten">Besonderheiten</a>
+  <a href="#links">Mehr Infos</a>
+</nav>
+
+<section id="gastgeber">
+  <h2>🏟️ Die drei Gastgeber</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Erstmals wird eine WM von drei Nationen gemeinsam ausgerichtet.</p>
+
+  <div class="host-grid">
+    <div class="host-card usa">
+      <div class="top"><div class="flag">🇺🇸</div><h3>USA</h3><p>11 Spielorte</p></div>
+      <div class="body"><ul>
+        <li><span>Finale</span><strong>MetLife Stadium, NJ</strong></li>
+        <li><span>Eröffnung</span><strong>Los Angeles</strong></li>
+        <li><span>Spiele</span><strong>78</strong></li>
+        <li><span>Besonderheit</span><strong>NFL-Stadien</strong></li>
+      </ul></div>
+    </div>
+    <div class="host-card can">
+      <div class="top"><div class="flag">🇨🇦</div><h3>Kanada</h3><p>2 Spielorte</p></div>
+      <div class="body"><ul>
+        <li><span>Städte</span><strong>Toronto & Vancouver</strong></li>
+        <li><span>Spiele</span><strong>13</strong></li>
+        <li><span>Erste WM</span><strong>als Co-Gastgeber</strong></li>
+        <li><span>Sport</span><strong>Hockey-Land ❤ Soccer</strong></li>
+      </ul></div>
+    </div>
+    <div class="host-card mex">
+      <div class="top"><div class="flag">🇲🇽</div><h3>Mexiko</h3><p>3 Spielorte</p></div>
+      <div class="body"><ul>
+        <li><span>Städte</span><strong>Mexiko-Stadt, Guadalajara, Monterrey</strong></li>
+        <li><span>Spiele</span><strong>13</strong></li>
+        <li><span>Rekord</span><strong>3. WM-Ausrichtung 🏆</strong></li>
+        <li><span>Azteca</span><strong>Legendäres Stadion</strong></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="format">
+  <div class="format">
+    <h2>🆕 Das neue Format</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Die FIFA hat das WM-Format komplett überarbeitet — mehr Teams, mehr Spiele, mehr Drama.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">48</div><div class="lbl">Teams</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Gruppen à 4</div></div>
+      <div class="stat"><div class="num">104</div><div class="lbl">Spiele gesamt</div></div>
+      <div class="stat"><div class="num">39</div><div class="lbl">Tage Turnier</div></div>
+    </div>
+
+    <h3 style="margin-top:2rem;color:var(--usa-blue)">📋 So funktioniert es</h3>
+    <p style="margin-top:1rem">Statt wie früher 32 Teams in 8 Gruppen treten jetzt <strong>48 Mannschaften in 12 Vierergruppen</strong> an. Jedes Team spielt 3 Gruppenspiele. Weiter kommen:</p>
+    <ul style="margin:1rem 0 0 1.5rem">
+      <li>Die <strong>zwei Besten jeder Gruppe</strong> (= 24 Teams)</li>
+      <li>Die <strong>8 besten Gruppendritten</strong></li>
+      <li>= insgesamt <strong>32 Teams</strong> für die K.o.-Runde</li>
+    </ul>
+  </div>
+</section>
+
+<section id="phasen">
+  <h2>⚡ Die Spielphasen</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Von der Gruppenphase bis zum Finale — der neue Weg zum Pokal.</p>
+
+  <div class="phase">
+    <div class="phase-card"><h4><span class="icon">🥅</span>Gruppenphase</h4><p>12 Gruppen × 4 Teams. Jeder gegen jeden. Die zwei Besten + 8 beste Dritte ziehen weiter.</p></div>
+    <div class="phase-card"><h4><span class="icon">🎯</span>Sechzehntelfinale</h4><p><strong>Neu!</strong> 32 Teams kämpfen erstmals in einer Runde der letzten 32 um den Einzug ins Achtelfinale.</p></div>
+    <div class="phase-card"><h4><span class="icon">🔥</span>Achtelfinale</h4><p>16 Teams, K.o.-Modus. Verlieren = Heimflug.</p></div>
+    <div class="phase-card"><h4><span class="icon">⚔️</span>Viertelfinale</h4><p>Die letzten 8 — hier trennt sich Spreu von Weizen.</p></div>
+    <div class="phase-card"><h4><span class="icon">🏅</span>Halbfinale</h4><p>4 Teams, 2 Spiele, ein Traum vom Finale.</p></div>
+    <div class="phase-card"><h4><span class="icon">🏆</span>Finale</h4><p>19. Juli 2026, MetLife Stadium, New Jersey — wer wird Weltmeister?</p></div>
+  </div>
+</section>
+
+<section id="laender">
+  <h2>🌍 Teilnehmer & Favoriten</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Eine Auswahl der spannendsten Nationen und ihre Besonderheiten.</p>
+
+  <div class="countries">
+    <div class="country"><span class="flag">🇩🇪</span><div class="name">Deutschland</div><div class="note">4× Weltmeister</div></div>
+    <div class="country"><span class="flag">🇦🇷</span><div class="name">Argentinien</div><div class="note">Titelverteidiger 🏆</div></div>
+    <div class="country"><span class="flag">🇧🇷</span><div class="name">Brasilien</div><div class="note">Rekord-Champion (5×)</div></div>
+    <div class="country"><span class="flag">🇫🇷</span><div class="name">Frankreich</div><div class="note">Mbappé & Co.</div></div>
+    <div class="country"><span class="flag">🇪🇸</span><div class="name">Spanien</div><div class="note">Europameister 2024</div></div>
+    <div class="country"><span class="flag">🇵🇹</span><div class="name">Portugal</div><div class="note">Ronaldos letzte WM?</div></div>
+    <div class="country"><span class="flag">🇳🇱</span><div class="name">Niederlande</div><div class="note">„Oranje" Power</div></div>
+    <div class="country"><span class="flag">🇧🇪</span><div class="name">Belgien</div><div class="note">Goldene Generation 2.0</div></div>
+    <div class="country"><span class="flag">🇮🇹</span><div class="name">Italien</div><div class="note">Comeback der Azzurri?</div></div>
+    <div class="country"><span class="flag">🇭🇷</span><div class="name">Kroatien</div><div class="note">Modrićs Erbe</div></div>
+    <div class="country"><span class="flag">🇲🇦</span><div class="name">Marokko</div><div class="note">Halbfinalist 2022</div></div>
+    <div class="country"><span class="flag">🇯🇵</span><div class="name">Japan</div><div class="note">Asiens Top-Team</div></div>
+    <div class="country"><span class="flag">🇰🇷</span><div class="name">Südkorea</div><div class="note">Son Heung-min</div></div>
+    <div class="country"><span class="flag">🇺🇸</span><div class="name">USA</div><div class="note">Heim-Vorteil</div></div>
+    <div class="country"><span class="flag">🇲🇽</span><div class="name">Mexiko</div><div class="note">Verados Fans 🌶️</div></div>
+    <div class="country"><span class="flag">🇨🇦</span><div class="name">Kanada</div><div class="note">Davies & Co.</div></div>
+  </div>
+</section>
+
+<section id="besonderheiten">
+  <h2>🎉 Besonderheiten & Fun Facts</h2>
+  <div class="divider"></div>
+
+  <div class="fun-grid">
+    <div class="fun f1"><span class="emoji">🍺</span><h4>Stadion-Bier</h4><p>In den USA & Kanada gibt's wieder Bier im Stadion — in Mexiko sowieso Tradition!</p></div>
+    <div class="fun f2"><span class="emoji">⚽</span><h4>Neuer Spielball</h4><p>Adidas präsentiert einen High-Tech-Ball mit Chip für präzise VAR-Entscheidungen.</p></div>
+    <div class="fun f3"><span class="emoji">🏟️</span><h4>16 Mega-Stadien</h4><p>Von der Rose Bowl bis zum Aztekenstadion — historische Arenen treffen Hightech.</p></div>
+    <div class="fun f4"><span class="emoji">🌡️</span><h4>3 Klimazonen</h4><p>Höhenluft in Mexiko-Stadt, Hitze in Dallas, kühler Sommer in Vancouver.</p></div>
+    <div class="fun f1"><span class="emoji">🎶</span><h4>Multi-Kultur</h4><p>Drei Länder, drei Sprachen, eine Leidenschaft — Fußball verbindet.</p></div>
+    <div class="fun f2"><span class="emoji">💰</span><h4>Rekord-Preisgeld</h4><p>Über 1 Milliarde US-Dollar Ausschüttung — höchstes WM-Preisgeld aller Zeiten.</p></div>
+  </div>
+</section>
+
+<section id="links">
+  <h2>🔗 Weitere Infos & Bilder</h2>
+  <div class="divider"></div>
+  <p class="section-sub">Offizielle und beliebte Quellen rund um die WM 2026.</p>
+
+  <div class="links">
+    <a href="https://www.fifa.com/fifaplus/de/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">
+      <strong>🌐 FIFA Offiziell</strong><span>fifa.com – Spielplan, Tickets & News</span>
+    </a>
+    <a href="https://de.wikipedia.org/wiki/Fu%C3%9Fball-Weltmeisterschaft_2026" target="_blank" rel="noopener">
+      <strong>📖 Wikipedia</strong><span>Umfassender Überblick zum Turnier</span>
+    </a>
+    <a href="https://www.kicker.de/wm-2026" target="_blank" rel="noopener">
+      <strong>📰 Kicker</strong><span>Deutsche WM-Berichterstattung</span>
+    </a>
+    <a href="https://www.uefa.com/european-qualifiers/" target="_blank" rel="noopener">
+      <strong>🏟️ UEFA Quali</strong><span>Europäische Qualifikation</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="flags">🇺🇸 🇨🇦 🇲🇽</div>
+  <h3>FIFA WM 2026 — United by Football</h3>
+  <p>Erstellt mit ⚽ Leidenschaft · 11.06. – 19.07.2026</p>
+</footer>
+
+</body>
+</html>
